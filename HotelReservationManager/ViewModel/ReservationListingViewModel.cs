@@ -17,10 +17,10 @@ namespace HotelReservationManager.ViewModel
 
         #region Constructors
 
-        public ReservationListingViewModel(NavigationStore navigationStore)
+        public ReservationListingViewModel()
         {
             _reservations = new ObservableCollection<ReservationViewModel>();
-            MakeReservationCommand = new NavigateCommand(navigationStore);
+            MakeReservationCommand = new NavigateCommand();
         }
 
         #endregion Constructors

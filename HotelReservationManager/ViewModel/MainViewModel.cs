@@ -7,15 +7,12 @@ using System.Threading.Tasks;
 
 namespace HotelReservationManager.ViewModel
 {
-    internal class MainViewModel:ViewModelBase
+    internal class MainViewModel : ViewModelBase
     {
-        private readonly NavigationStore _navigationStore;
-
-        public MainViewModel(NavigationStore navigationStore)
+        public MainViewModel()
         {
-            _navigationStore = navigationStore;
         }
 
-        public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
+        public ViewModelBase CurrentViewModel => ActiveDocument.NavigationStore.CurrentViewModel;
     }
 }

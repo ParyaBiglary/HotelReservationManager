@@ -8,15 +8,13 @@ namespace HotelReservationManager.Command
     {
         #region Fields
 
-        private readonly NavigationStore _navigationStore;
-
         #endregion Fields
 
         #region Constructors
 
-        public NavigateCommand(NavigationStore navigationStore)
+        public NavigateCommand()
         {
-            _navigationStore = navigationStore;
+
         }
 
         #endregion Constructors
@@ -25,7 +23,7 @@ namespace HotelReservationManager.Command
 
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = new MakeReservationViewModel();
+            ActiveDocument.NavigationStore.CurrentViewModel = new MakeReservationViewModel();
         }
 
         #endregion Methods
