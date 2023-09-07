@@ -1,4 +1,5 @@
 ﻿using HotelReservationManager.Command;
+using HotelReservationManager.Model;
 using System;
 using System.Windows.Input;
 
@@ -22,6 +23,7 @@ namespace HotelReservationManager.ViewModel
         public MakeReservationViewModel()
         {
             SubmitCommand = new MakeReservationCommand(this);
+            CancelCommand = new MakeReservationCommand(this);
         }
 
         #endregion Constructors

@@ -56,8 +56,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ActiveDocument.cs" />
+    <Compile Include="Command\CancelMakeReservationCommand.cs" />
     <Compile Include="Command\CommandBase.cs" />
     <Compile Include="Command\MakeReservationCommand.cs" />
+    <Compile Include="Command\NavigateCommand.cs" />
+    <Compile Include="Store\NavigationStore.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MakeReservationViewModel.cs" />
     <Compile Include="ViewModel\ReservationListingViewModel.cs" />

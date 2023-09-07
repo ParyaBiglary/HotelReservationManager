@@ -5,11 +5,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:HotelReservationManager.View"
+    xmlns:vm="clr-namespace:HotelReservationManager.ViewModel"
+    xmlns:vms="clr-namespace:HotelReservationManager.Store"
     mc:Ignorable="d"
     Title="MainWindow"
     Height="450"
     Width="800">
-    <Window.Resources>
+    <Window.DataContext>
+        <vms:NavigationStore />
+    </Window.DataContext>
+        <Window.Resources>
 
         <Style
             TargetType="TextBlock">
@@ -22,6 +27,17 @@
     <Grid
         Margin="20 20"
         MaxWidth="600">
-        <views:MakeReservationView />
+        <Grid.Resources>
+            <DataTemplate
+                DataType="{x:Type vm:MakeReservationViewModel}">
+                <views:MakeReservationView />
+            </DataTemplate>
+            <DataTemplate
+                DataType="{x:Type vm:ReservationListingViewModel}">
+                <views:ReservationListingView />
+            </DataTemplate>
+        </Grid.Resources>
+        <ContentControl
+            Content="{Binding Path=CurrentViewModel}" />
     </Grid>
 </Window>
