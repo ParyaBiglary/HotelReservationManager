@@ -12,15 +12,13 @@ namespace HotelReservationManager
     {
         #region Fields
 
-        private readonly NavigationStore _navigationStore;
-
         #endregion Fields
 
         #region Constructors
 
         public App()
         {
-            _navigationStore = new NavigationStore();
+            ActiveDocument.NavigationStore = new NavigationStore();
         }
 
         #endregion Constructors
@@ -31,12 +29,8 @@ namespace HotelReservationManager
         {
             var hotel = new Hotel("Happy Fairytale");
             ActiveDocument.Hotel = hotel;
-            _navigationStore.CurrentViewModel = new ReservationListingViewModel(_navigationStore);
-            MainWindow = new MainWindow()
-            {
-                DataContext = new MainViewModel(_navigationStore)
-            };
-            MainWindow.Show();
+            ActiveDocument.NavigationStore.CurrentViewModel = new ReservationListingViewModel();
+
             base.OnStartup(e);
         }
 
