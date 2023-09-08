@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using HotelReservationManager.Command;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -6,6 +7,7 @@ namespace HotelReservationManager.ViewModel
 {
     internal class ReservationListingViewModel : ViewModelBase
     {
+
         #region Fields
 
         private readonly ObservableCollection<ReservationViewModel> _reservations;
@@ -16,7 +18,18 @@ namespace HotelReservationManager.ViewModel
 
         public ReservationListingViewModel()
         {
+            var reservations = ActiveDocument.Hotel.GetAllReservations();
+
             _reservations = new ObservableCollection<ReservationViewModel>();
+
+            foreach (var reservation in reservations)
+            {
+                var reservationVM = new ReservationViewModel(reservation);
+
+                _reservations.Add(reservationVM);
+            }
+
+            MakeReservationCommand = new NavigateCommand();
         }
 
         #endregion Constructors
@@ -27,5 +40,6 @@ namespace HotelReservationManager.ViewModel
         public IEnumerable<ReservationViewModel> Reservations => _reservations;
 
         #endregion Properties
+
     }
 }

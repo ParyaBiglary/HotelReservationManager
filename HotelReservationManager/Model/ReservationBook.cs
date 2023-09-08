@@ -4,6 +4,7 @@ namespace HotelReservationManager.Model
 {
     public class ReservationBook
     {
+
         #region Fields
 
         private readonly List<Reservation> _reservation;
@@ -39,5 +40,6 @@ namespace HotelReservationManager.Model
         }
 
         #endregion Methods
+
     }
 }

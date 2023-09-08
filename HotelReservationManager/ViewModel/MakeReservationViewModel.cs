@@ -22,6 +22,7 @@ namespace HotelReservationManager.ViewModel
         public MakeReservationViewModel()
         {
             SubmitCommand = new MakeReservationCommand(this);
+            CancelCommand = new CancelMakeReservationCommand();
         }
 
         #endregion Constructors

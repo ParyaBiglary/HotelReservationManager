@@ -1,11 +1,6 @@
 ﻿using HotelReservationManager.Model;
+using HotelReservationManager.Store;
 using HotelReservationManager.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace HotelReservationManager
@@ -15,11 +10,28 @@ namespace HotelReservationManager
     /// </summary>
     public partial class App : Application
     {
+
+        #region Constructors
+
+        public App()
+        {
+            ActiveDocument.NavigationStore = new NavigationStore();
+        }
+
+        #endregion Constructors
+
+        #region Methods
+
         protected override void OnStartup(StartupEventArgs e)
         {
             var hotel = new Hotel("Happy Fairytale");
             ActiveDocument.Hotel = hotel;
+            ActiveDocument.NavigationStore.CurrentViewModel = new ReservationListingViewModel();
+
             base.OnStartup(e);
         }
+
+        #endregion Methods
+
     }
 }

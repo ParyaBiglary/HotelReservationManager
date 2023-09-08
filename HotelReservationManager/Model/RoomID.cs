@@ -2,6 +2,7 @@
 {
     public class RoomID
     {
+
         #region Constructors
 
         public RoomID(int floorNumber, int roomNumber)
@@ -43,5 +44,6 @@
         }
 
         #endregion Methods
+
     }
 }

@@ -5,6 +5,7 @@ namespace HotelReservationManager.Model
     [Serializable]
     public class ReservationConflictException : Exception
     {
+
         #region Constructors
 
         public ReservationConflictException(string message, Reservation existingReservation, Reservation incomingReservation) : base(message)
@@ -37,5 +38,6 @@ namespace HotelReservationManager.Model
         public Reservation IncomingReservation { get; set; }
 
         #endregion Properties
+
     }
 }
