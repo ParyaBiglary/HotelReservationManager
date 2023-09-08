@@ -39,11 +39,12 @@ namespace HotelReservationManager.Command
             try
             {
                 ActiveDocument.Hotel.MakeReservation(reservation);
-                MessageBox.Show("Your Room reserved SUCCESSFULLY", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Your room reserved succesfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                ActiveDocument.NavigationStore.CurrentViewModel = new ReservationListingViewModel();
             }
             catch (ReservationConflictException)
             {
-                MessageBox.Show("This Room is already taken,SORRY!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("This Room is already taken, PLease reschedule.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -59,5 +60,6 @@ namespace HotelReservationManager.Command
         }
 
         #endregion Methods
+
     }
 }

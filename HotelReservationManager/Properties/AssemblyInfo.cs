@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HotelReservationManager")]
-[assembly: AssemblyCopyright("Copyright ©  2023")]
+[assembly: AssemblyCopyright("MIT Lisense")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

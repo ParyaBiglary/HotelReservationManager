@@ -1,20 +1,14 @@
-﻿using HotelReservationManager.Model;
-using HotelReservationManager.Store;
-using HotelReservationManager.ViewModel;
+﻿using HotelReservationManager.ViewModel;
 
 namespace HotelReservationManager.Command
 {
     internal class NavigateCommand : CommandBase
     {
-        #region Fields
-
-        #endregion Fields
 
         #region Constructors
 
         public NavigateCommand()
         {
-
         }
 
         #endregion Constructors
@@ -27,5 +21,6 @@ namespace HotelReservationManager.Command
         }
 
         #endregion Methods
+
     }
 }

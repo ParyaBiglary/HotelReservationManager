@@ -1,5 +1,4 @@
 ﻿using HotelReservationManager.Command;
-using HotelReservationManager.Store;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -19,7 +18,17 @@ namespace HotelReservationManager.ViewModel
 
         public ReservationListingViewModel()
         {
+            var reservations = ActiveDocument.Hotel.GetAllReservations();
+
             _reservations = new ObservableCollection<ReservationViewModel>();
+
+            foreach (var reservation in reservations)
+            {
+                var reservationVM = new ReservationViewModel(reservation);
+
+                _reservations.Add(reservationVM);
+            }
+
             MakeReservationCommand = new NavigateCommand();
         }
 

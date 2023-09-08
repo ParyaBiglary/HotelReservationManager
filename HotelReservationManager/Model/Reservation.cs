@@ -4,6 +4,7 @@ namespace HotelReservationManager.Model
 {
     public class Reservation
     {
+
         #region Constructors
 
         public Reservation(RoomID roomID, string username, DateTime startDate, DateTime endDate)
@@ -19,6 +20,7 @@ namespace HotelReservationManager.Model
         #region Properties
 
         public DateTime EndDate { get; }
+
         public TimeSpan Length
         {
             get
@@ -46,5 +48,6 @@ namespace HotelReservationManager.Model
         }
 
         #endregion Methods
+
     }
 }

@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:HotelReservationManager.View"
     xmlns:vm="clr-namespace:HotelReservationManager.ViewModel"
-    xmlns:vms="clr-namespace:HotelReservationManager.Store"
     mc:Ignorable="d"
     Title="MainWindow"
     Height="450"

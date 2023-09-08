@@ -1,18 +1,48 @@
-﻿using HotelReservationManager.Store;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HotelReservationManager.ViewModel
+﻿namespace HotelReservationManager.ViewModel
 {
     internal class MainViewModel : ViewModelBase
     {
+        #region Fields
+
+        private ViewModelBase _currentViewModel;
+
+        #endregion Fields
+
+        #region Constructors
+
         public MainViewModel()
         {
+            _currentViewModel = ActiveDocument.NavigationStore.CurrentViewModel;
+
+            ActiveDocument.NavigationStore.CurrentViewModelChanged += NavigationStore_CurrentViewModelChanged;
         }
 
-        public ViewModelBase CurrentViewModel => ActiveDocument.NavigationStore.CurrentViewModel;
+        #endregion Constructors
+
+        #region Properties
+
+        public ViewModelBase CurrentViewModel
+        {
+            get
+            {
+                return _currentViewModel;
+            }
+            set
+            {
+                _currentViewModel = value;
+                OnPropertyChanged(nameof(CurrentViewModel));
+            }
+        }
+
+        #endregion Properties
+
+        #region Methods
+
+        private void NavigationStore_CurrentViewModelChanged(object sender, ViewModelBase e)
+        {
+            CurrentViewModel = e;
+        }
+
+        #endregion Methods
     }
 }

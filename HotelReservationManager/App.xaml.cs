@@ -10,9 +10,6 @@ namespace HotelReservationManager
     /// </summary>
     public partial class App : Application
     {
-        #region Fields
-
-        #endregion Fields
 
         #region Constructors
 
@@ -35,5 +32,6 @@ namespace HotelReservationManager
         }
 
         #endregion Methods
+
     }
 }

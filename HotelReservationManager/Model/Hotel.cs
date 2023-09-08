@@ -4,6 +4,7 @@ namespace HotelReservationManager.Model
 {
     public class Hotel
     {
+
         #region Fields
 
         private readonly ReservationBook _reservationBook;
@@ -29,15 +30,12 @@ namespace HotelReservationManager.Model
         #region Methods
 
         /// <summary>
-        /// Get the reservations for a user
+        /// Get the reservations
         /// </summary>
-        /// <param name="username">
-        /// The username of the user.
-        /// </param>
         /// <returns>
-        /// The reservations for the user.
+        /// The reservations.
         /// </returns>
-        public IEnumerable<Reservation> GetAllReservations(string username)
+        public IEnumerable<Reservation> GetAllReservations()
         {
             return _reservationBook.GetAllReservations();
         }
@@ -56,5 +54,6 @@ namespace HotelReservationManager.Model
         }
 
         #endregion Methods
+
     }
 }
