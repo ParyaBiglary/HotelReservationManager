@@ -29,8 +29,7 @@
             }
             set
             {
-                _currentViewModel = value;
-                OnPropertyChanged(nameof(CurrentViewModel));
+                SetProperty(ref _currentViewModel, value);
             }
         }
 

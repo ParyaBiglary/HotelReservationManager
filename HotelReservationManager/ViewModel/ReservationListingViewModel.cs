@@ -1,4 +1,4 @@
-﻿using HotelReservationManager.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -29,10 +29,15 @@ namespace HotelReservationManager.ViewModel
                 _reservations.Add(reservationVM);
             }
 
-            MakeReservationCommand = new NavigateCommand();
+            MakeReservationCommand = new RelayCommand(ExecuteMRC);
         }
 
+
         #endregion Constructors
+        public  void ExecuteMRC()
+        {
+            ActiveDocument.NavigationStore.CurrentViewModel = new MakeReservationViewModel();
+        }
 
         #region Properties
 

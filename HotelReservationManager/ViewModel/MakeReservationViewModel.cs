@@ -1,12 +1,13 @@
-﻿using HotelReservationManager.Command;
+﻿using CommunityToolkit.Mvvm.Input;
+using HotelReservationManager.Model;
 using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace HotelReservationManager.ViewModel
 {
     internal class MakeReservationViewModel : ViewModelBase
     {
-
         #region Fields
 
         private DateTime _endtDate = DateTime.Now;
@@ -21,11 +22,56 @@ namespace HotelReservationManager.ViewModel
 
         public MakeReservationViewModel()
         {
-            SubmitCommand = new MakeReservationCommand(this);
-            CancelCommand = new CancelMakeReservationCommand();
+            SubmitCommand = new RelayCommand(ExecuteSubmit,CanExecuteSubmit);
+            CancelCommand = new RelayCommand(ExecuteCancel);
+
+            PropertyChanged += _makeReservationViewModel_PropertyChanged;
         }
 
         #endregion Constructors
+
+        #region Submit Command
+
+        public void ExecuteSubmit()
+        {
+            Reservation reservation = new Reservation(new RoomID(FloorNumber,RoomNumber),UserName,StartDate,EndtDate);
+
+            try
+            {
+                ActiveDocument.Hotel.MakeReservation(reservation);
+                MessageBox.Show("Your room reserved succesfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                ActiveDocument.NavigationStore.CurrentViewModel = new ReservationListingViewModel();
+            }
+            catch (ReservationConflictException)
+            {
+                MessageBox.Show("This Room is already taken, PLease reschedule.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public bool CanExecuteSubmit()
+        {
+            return !string.IsNullOrEmpty(UserName) && FloorNumber > 0 &&
+                RoomNumber > 0 ;
+        }
+
+        private void _makeReservationViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals(nameof(UserName))
+                || e.PropertyName.Equals(nameof(FloorNumber))
+                || e.PropertyName.Equals(nameof(RoomNumber))
+                )
+            {
+                SubmitCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        #endregion
+        #region Cancel Command
+        public  void ExecuteCancel()
+        {
+            ActiveDocument.NavigationStore.CurrentViewModel = new ReservationListingViewModel();
+        }
+        #endregion
 
         #region Properties
 
@@ -39,8 +85,7 @@ namespace HotelReservationManager.ViewModel
             }
             set
             {
-                _endtDate = value;
-                OnPropertyChanged(nameof(EndtDate));
+                SetProperty(ref _endtDate, value);
             }
         }
 
@@ -52,8 +97,7 @@ namespace HotelReservationManager.ViewModel
             }
             set
             {
-                _floorNumber = value;
-                OnPropertyChanged(nameof(FloorNumber));
+                SetProperty(ref _floorNumber, value);
             }
         }
 
@@ -65,8 +109,7 @@ namespace HotelReservationManager.ViewModel
             }
             set
             {
-                _roomNumber = value;
-                OnPropertyChanged(nameof(RoomNumber));
+                SetProperty(ref _roomNumber, value);
             }
         }
 
@@ -78,12 +121,11 @@ namespace HotelReservationManager.ViewModel
             }
             set
             {
-                _startDate = value;
-                OnPropertyChanged(nameof(StartDate));
+                SetProperty(ref _startDate, value);
             }
         }
 
-        public ICommand SubmitCommand { get; }
+        public RelayCommand SubmitCommand { get; }
 
         public string UserName
         {
@@ -93,12 +135,10 @@ namespace HotelReservationManager.ViewModel
             }
             set
             {
-                _userName = value;
-                OnPropertyChanged(nameof(UserName));
+                SetProperty(ref _userName, value);
             }
         }
 
         #endregion Properties
-
     }
 }
